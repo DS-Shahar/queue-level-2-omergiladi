@@ -68,3 +68,22 @@ public static int weaklyIncreasingOrder(Node<Integer> head) {
 
     return max;
 }
+
+public static boolean hasDuplicates(Queue<String> q1) {
+    Queue<String> q2 = new Queue<>();
+    boolean found = false;
+
+    while (!q1.isEmpty()) {
+        String s = q1.remove();
+        if (isIn(q2, s)) {
+            found = true;
+        }
+        q2.insert(s);
+    }
+
+    while (!q2.isEmpty()) {
+        q1.insert(q2.remove());
+    }
+
+    return found;
+}
